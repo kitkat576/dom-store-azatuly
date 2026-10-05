@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Склад | AZATULY COFFEE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="dashboard">
+        <!-- Шапка панели -->
+        <header class="dash-header">
+            <div class="header-info">
+                <h1>Управление складом</h1>
+                <p>AZATULY COFFEE: учёт зерна, расходников и сиропов.</p>
+            </div>
+            <div class="header-metrics">
+                <div class="metric-box highlight">
+                    <span>Общая стоимость</span>
+                    <strong id="liveTotal">0 ₸</strong>
+                </div>
+                <div class="metric-box">
+                    <span>Позиций</span>
+                    <strong id="itemsCount">0</strong>
+                </div>
+                <div class="metric-box">
+                    <span>Единиц</span>
+                    <strong id="totalUnits">0</strong>
+                </div>
+            </div>
+        </header>
+
+        <!-- Рабочая область: Форма слева, Таблица справа -->
+        <main class="dash-workspace">
+            
+            <!-- Левая колонка: Форма -->
+            <aside class="sidebar">
+                <div class="card">
+                    <h2>Новое поступление</h2>
+                    <form id="addProductForm" novalidate>
+                        <div class="input-group">
+                            <label for="productName">Наименование</label>
+                            <input type="text" id="productName" name="name" placeholder="Например: Сироп Карамель">
+                            <span class="error-text" id="nameError"></span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="productPrice">Цена за единицу (₸)</label>
+                            <input type="text" id="productPrice" name="price" placeholder="4500">
+                            <span class="error-text" id="priceError"></span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="productQty">Количество</label>
+                            <input type="text" id="productQty" name="qty" placeholder="1" value="1">
+                            <span class="error-text" id="qtyError"></span>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Добавить товар</button>
+                    </form>
+                    <div id="formSuccessMsg" class="success-toast hidden"></div>
+                </div>
+            </aside>
+
+            <!-- Правая колонка: Таблица -->
+            <section class="main-content">
+                <div class="card">
+                    <h2>Текущие остатки</h2>
+                    <div class="table-container">
+                        <table class="inventory-table">
+                            <thead>
+                                <tr>
+                                    <th>Название</th>
+                                    <th class="align-right">Цена</th>
+                                    <th class="align-center">Кол-во</th>
+                                    <th class="align-right">Сумма</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsTableBody">
+                                <!-- Рендер строк из JS -->
+                            </tbody>
+                        </table>
+                        <div id="emptyState" class="empty-state hidden">
+                            <p>На складе пока нет товаров.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Шаблон строки -->
+    <template id="rowTemplate">
+        <tr>
+            <td class="col-name fw-bold"></td>
+            <td class="col-price align-right text-muted"></td>
+            <td class="col-qty align-center">
+                <div class="stepper">
+                    <button type="button" data-action="dec">−</button>
+                    <span class="qty-val"></span>
+                    <button type="button" data-action="inc">+</button>
+                </div>
+            </td>
+            <td class="col-sum align-right fw-bold"></td>
+            <td class="col-action align-right">
+                <button type="button" class="btn-remove" data-action="delete">Удалить</button>
+            </td>
+        </tr>
+    </template>
+
+    <script src="src/Store.js"></script>
+    <script src="./src/app.js"></script>
+</body>
+</html>

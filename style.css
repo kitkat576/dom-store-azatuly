@@ -1,0 +1,301 @@
+:root {
+    --bg-app: #f3f4f6;
+    --bg-panel: #ffffff;
+    --text-dark: #1f2937;
+    --text-muted: #6b7280;
+    --accent: #d97706; /* Кофейно-янтарный */
+    --accent-hover: #b45309;
+    --border-color: #e5e7eb;
+    --danger: #dc2626;
+    --success: #059669;
+    --radius-lg: 16px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --font-base: system-ui, -apple-system, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-base);
+    background-color: var(--bg-app);
+    color: var(--text-dark);
+    line-height: 1.5;
+    padding: 2rem;
+}
+
+.dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Header --- */
+.dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.header-info h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #111827;
+}
+
+.header-info p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
+}
+
+.header-metrics {
+    display: flex;
+    gap: 1rem;
+}
+
+.metric-box {
+    background-color: var(--bg-panel);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    min-width: 120px;
+}
+
+.metric-box span {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+}
+
+.metric-box strong {
+    font-size: 1.5rem;
+}
+
+.metric-box.highlight strong {
+    color: var(--accent);
+}
+
+/* --- Layout --- */
+.dash-workspace {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.card {
+    background: var(--bg-panel);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--bg-app);
+}
+
+/* --- Форма (Слева) --- */
+.input-group {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--text-dark);
+}
+
+.input-group input {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    background-color: var(--bg-app);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+}
+
+.input-group input.invalid {
+    border-color: var(--danger);
+    background-color: #fef2f2;
+}
+
+.error-text {
+    color: var(--danger);
+    font-size: 0.75rem;
+    margin-top: 0.3rem;
+    min-height: 14px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 0.5rem;
+}
+
+.btn-submit:hover {
+    background-color: var(--accent-hover);
+}
+
+.success-toast {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: #d1fae5;
+    color: var(--success);
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* --- Таблица (Справа) --- */
+.table-container {
+    overflow-x: auto;
+}
+
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.inventory-table th {
+    text-align: left;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 1rem 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.inventory-table td {
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.inventory-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Утилиты таблицы */
+.align-right { text-align: right; }
+.align-center { text-align: center; }
+.fw-bold { font-weight: 600; }
+.text-muted { color: var(--text-muted); }
+
+/* Контроллер количества */
+.stepper {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--bg-app);
+    border-radius: var(--radius-sm);
+    padding: 2px;
+}
+
+.stepper button {
+    width: 26px;
+    height: 26px;
+    border: none;
+    background: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--text-dark);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: background 0.2s;
+}
+
+.stepper button:hover:not(:disabled) {
+    background: var(--border-color);
+}
+
+.stepper button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.stepper .qty-val {
+    min-width: 36px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Кнопка удаления */
+.btn-remove {
+    background: none;
+    border: none;
+    color: var(--danger);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.btn-remove:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.empty-state {
+    padding: 3rem 0;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+    .dash-workspace {
+        grid-template-columns: 1fr;
+    }
+    
+    .dash-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .header-metrics {
+        flex-wrap: wrap;
+    }
+    
+    .metric-box {
+        flex: 1;
+    }
+}
